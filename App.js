@@ -5,6 +5,7 @@ import Post from './screens/Post'
 import feed from './assets/data/feed'
 import SearchResults from './screens/SearchResults'
 import DestinationSearch from './screens/DestinationSearch'
+import Guest from './screens/Guests'
 
 export default function App() {
   return (
@@ -14,7 +15,8 @@ export default function App() {
       {/* <HomeScreen /> */}
       {/* <Post post={post1}/> */}
       {/* <SearchResults /> */}
-      <DestinationSearch />
+      {/* <DestinationSearch /> */}
+      <Guest />
     </SafeAreaView>
     </>
   );
