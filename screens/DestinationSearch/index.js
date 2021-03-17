@@ -4,6 +4,7 @@ import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import SuggestionRows from './SuggestionRows'
+import {API_KEY} from '@env'
 
 const DestinationSearch = () => {
   const [textInput, setTextInput] = useState("");
@@ -24,7 +25,7 @@ const DestinationSearch = () => {
               textInput: styles.textInput
           }}
           query={{
-            key: "AIzaSyCpGBMzkD7xUGwiACBdAct8LsptuDiK4MQ",
+            key: API_KEY,
             language: "es",
             types:'(cities)'
           }}
