@@ -1,39 +1,38 @@
-import React,{useState} from 'react'
-import { View, Text,TextInput,FlatList,Pressable } from 'react-native'
-import search from '../../assets/data/search'
-import styles from './styles'
-import Entipo from 'react-native-vector-icons/Entypo'
-import {useNavigation} from '@react-navigation/native'
+import React, { useState } from "react";
+import { View, TextInput } from "react-native";
+import styles from "./styles";
+import { useNavigation } from "@react-navigation/native";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import SuggestionRows from './SuggestionRows'
 
 const DestinationSearch = () => {
-    const [textInput, setTextInput] = useState('')
+  const [textInput, setTextInput] = useState("");
 
-    const navigation = useNavigation()
+  const navigation = useNavigation();
 
-    return (
-        <View style={styles.container}>
-            <TextInput 
-            placeholder={'Where are you going?'}
-            style={styles.textInput}
-            value={textInput}
-            onChangeText={setTextInput}
-            />
-            <FlatList 
-            data={search}
-            renderItem={({item}) =>(
-                <Pressable 
-                style={styles.row}
-                onPress={()=> navigation.navigate('Guests')}
-                >
-                    <View style={styles.iconContainer}>
-                    <Entipo name={'location-pin'} size={30}/>
-                    </View>
-                    <Text style={styles.locationText}>{item.description}</Text>
-                </Pressable>
-            )}
-            />
-        </View>
-    )
-}
+  return (
+    <View style={styles.container}>
+        <GooglePlacesAutocomplete
+          placeholder="Where are you going?"
+          onPress={(data, details = null) => {
+            // 'details' is provided when fetchDetails = true
+            console.log(data, details);
+            navigation.navigate('Guests')
+          }}
+          fetchDetails
+          style={{
+              textInput: styles.textInput
+          }}
+          query={{
+            key: "AIzaSyCpGBMzkD7xUGwiACBdAct8LsptuDiK4MQ",
+            language: "es",
+            types:'(cities)'
+          }}
+          suppressDefaultStyles
+          renderRow={(item) => <SuggestionRows item={item}/>}
+        />
+    </View>
+  );
+};
 
-export default DestinationSearch
+export default DestinationSearch;
