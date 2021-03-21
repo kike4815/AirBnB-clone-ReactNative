@@ -1,37 +1,35 @@
 import React, { useState } from "react";
-import { View, TextInput } from "react-native";
+import { View } from "react-native";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
-import SuggestionRows from './SuggestionRows'
-import {API_KEY} from '@env'
+import SuggestionRows from "./SuggestionRows";
+import Constants from "expo-constants";
 
 const DestinationSearch = () => {
   const [textInput, setTextInput] = useState("");
-
   const navigation = useNavigation();
 
   return (
     <View style={styles.container}>
-        <GooglePlacesAutocomplete
-          placeholder="Where are you going?"
-          onPress={(data, details = null) => {
-            // 'details' is provided when fetchDetails = true
-            console.log(data, details);
-            navigation.navigate('Guests')
-          }}
-          fetchDetails
-          style={{
-              textInput: styles.textInput
-          }}
-          query={{
-            key: API_KEY,
-            language: "es",
-            types:'(cities)'
-          }}
-          suppressDefaultStyles
-          renderRow={(item) => <SuggestionRows item={item}/>}
-        />
+      <GooglePlacesAutocomplete
+        placeholder="Where are you going?"
+        onPress={(data, details = null) => {
+          // 'details' is provided when fetchDetails = true
+          navigation.navigate("Guests");
+        }}
+        fetchDetails
+        style={{
+          textInput: styles.textInput,
+        }}
+        query={{
+          key: Constants.manifest.extra.API_KEY,
+          language: "es",
+          types: "(cities)",
+        }}
+        suppressDefaultStyles
+        renderRow={(item) => <SuggestionRows item={item} />}
+      />
     </View>
   );
 };

@@ -27,6 +27,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra":{
+      "API_KEY":"AIzaSyCpGBMzkD7xUGwiACBdAct8LsptuDiK4MQ"
     }
   }
 }
