@@ -4,7 +4,12 @@ const styles = StyleSheet.create({
   container: {
     height: 120,
     padding: 5,
-
+  },
+  innerContainer: {
+    flexDirection: "row",
+    backgroundColor: "white",
+    borderRadius: 10,
+    overflow: "hidden",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
@@ -14,12 +19,6 @@ const styles = StyleSheet.create({
     shadowRadius: 16.0,
 
     elevation: 24,
-  },
-  innerContainer: {
-    flexDirection: "row",
-    backgroundColor: "white",
-    borderRadius: 10,
-    overflow: "hidden",
   },
   image: {
     height: "100%",
