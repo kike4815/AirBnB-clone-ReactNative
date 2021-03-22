@@ -1,0 +1,10 @@
+{
+  "auth": {
+    "airbnbappdafd0116": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  }
+}

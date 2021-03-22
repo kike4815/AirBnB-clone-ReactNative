@@ -48,11 +48,11 @@ const SearchResultsMap = () => {
           longitudeDelta: 0.8,
         }}
       >
-        {places.map((place) => (
+        {places.map((place, index) => (
           <CustomMarker
             coordinate={place.coordinate}
             price={place.newPrice}
-            key={place.id}
+            key={index}
             isSelected={place.id === selectedPlace}
             onPress={() => setSelectedPlace(place.id)}
           />
