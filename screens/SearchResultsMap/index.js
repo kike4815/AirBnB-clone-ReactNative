@@ -3,13 +3,10 @@ import { FlatList, useWindowDimensions, View } from "react-native";
 import MapView from "react-native-maps";
 import CustomMarker from "../../components/CustomMarker";
 import PostCarouselItem from "../../components/PostCarouselItem";
-import { listPosts } from "../../src/graphql/queries";
-import { API, graphqlOperation } from "aws-amplify";
 
 const SearchResultsMap = (props) => {
   const [selectedPlace, setSelectedPlace] = useState(null);
-  const [posts, setPosts] = useState([]);
-  const { guests } = props;
+  const { posts } = props;
 
   const width = useWindowDimensions().width;
   const flatlist = useRef();
@@ -22,26 +19,6 @@ const SearchResultsMap = (props) => {
       setSelectedPlace(selectedPlaceId.id);
     }
   });
-
-  useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const postResults = await API.graphql(
-          graphqlOperation(listPosts, {
-            filter: {
-              maxGuests: {
-                ge: guests,
-              },
-            },
-          })
-        );
-        setPosts(postResults.data.listPosts.items);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    fetchData();
-  }, []);
 
   useEffect(() => {
     if (!selectedPlace || !flatlist) {
