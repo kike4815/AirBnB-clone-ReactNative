@@ -3,7 +3,9 @@ import { View, Text, Image, Pressable } from "react-native";
 import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
-const Post = ({ post }) => {
+const Post = (props) => {
+  const { post } = props;
+
   const days = 7;
   const navigation = useNavigation();
 

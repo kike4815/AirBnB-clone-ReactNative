@@ -2,7 +2,9 @@ import React from "react";
 import { View, Text, Image, ScrollView } from "react-native";
 import styles from "./styles";
 
-const Post = ({ post }) => {
+const Post = (props) => {
+  const { post } = props;
+  console.log(post);
   return (
     <ScrollView>
       <View style={styles.container}>
