@@ -6,9 +6,10 @@ import PostCarouselItem from "../../components/PostCarouselItem";
 import { listPosts } from "../../src/graphql/queries";
 import { API, graphqlOperation } from "aws-amplify";
 
-const SearchResultsMap = () => {
+const SearchResultsMap = (props) => {
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [posts, setPosts] = useState([]);
+  const { guests } = props;
 
   const width = useWindowDimensions().width;
   const flatlist = useRef();
@@ -25,7 +26,15 @@ const SearchResultsMap = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const postResults = await API.graphql(graphqlOperation(listPosts));
+        const postResults = await API.graphql(
+          graphqlOperation(listPosts, {
+            filter: {
+              maxGuests: {
+                ge: guests,
+              },
+            },
+          })
+        );
         setPosts(postResults.data.listPosts.items);
       } catch (error) {
         console.log(error);
