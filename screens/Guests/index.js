@@ -9,7 +9,7 @@ const Guest = () => {
   const [infants, setInfants] = useState(0);
 
   const route = useRoute();
-  console.log(route.params.viewport);
+
   const navigation = useNavigation();
 
   return (

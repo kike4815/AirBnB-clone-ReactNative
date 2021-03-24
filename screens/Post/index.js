@@ -4,7 +4,7 @@ import styles from "./styles";
 import { useNavigation } from "@react-navigation/native";
 
 const Post = (props) => {
-  const { post } = props;
+  const post = props.post;
 
   const days = 7;
   const navigation = useNavigation();
